@@ -1,9 +1,9 @@
 FROM debian:stretch
 
-RUN apt-get update && apt-get install -y wget vim git tar unzip autoconf libtool automake zlibc pkg-config
-
 RUN echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list
 RUN echo "deb http://deb.debian.org/debian stretch-backports-sloppy main" >> /etc/apt/sources.list
+
+RUN apt-get update && apt-get install -y wget vim git tar unzip autoconf libtool automake zlibc pkg-config
 
 RUN apt-get -t stretch-backports-sloppy install -y libarchive13
 RUN apt-get -t stretch-backports install -y gcc g++ cmake ninja-build lcov doxygen
