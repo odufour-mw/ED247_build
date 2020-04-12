@@ -1,18 +1,14 @@
-FROM debian:stretch
+FROM debian:jessie
 
-RUN echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list
-RUN echo "deb http://deb.debian.org/debian stretch-backports-sloppy main" >> /etc/apt/sources.list
-
-RUN apt-get update && apt-get install -y wget vim git tar unzip autoconf libtool automake zlibc pkg-config
-
-RUN apt-get -t stretch-backports-sloppy install -y libarchive13
+RUN apt-get update && apt-get install -y wget vim git tar unzip bzip2 autoconf libtool automake zlibc pkg-config libarchive13
 
 #
-# GCC (v6.3)
+# GCC (v4.8.4)
 # Lcov (v1.13)
 # Doxygen (v1.8.13)
 #
-RUN apt-get -t stretch-backports install -y gcc g++ lcov doxygen make
+RUN apt-get install -y gcc-4.8 g++-4.8 lcov doxygen make
+RUN rm /usr/bin/gcc && ln -s /usr/bin/gcc-4.8 /usr/bin/gcc && ln -s /usr/bin/g++-4.8 /usr/bin/g++
 
 RUN mkdir -p /ed247/dependencies
 RUN mkdir -p /ed247/configuration
