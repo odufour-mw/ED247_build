@@ -1,0 +1,45 @@
+###############################################################################
+# Setup the paths of dependencies and executable names
+###############################################################################
+
+# The paths and executables must be defined using 'define_path' or 'define_exe' predefined functions.
+# define_path or define_exe signatures are:
+# define_path/define_exe NAME VALUE
+#       Setup the path/executable without regard to OS type or compiler.
+# define_path/define_exe NAME OSTYPE VALUE
+#       Setup the path/executable according to the OS type.
+# define_path/define_exe NAME COMPILER WORDSIZE VALUE
+#       Setup the path/executable according to the compiler and wordsize. For available compilers and wordsizes, please refer to 'sh mgr.sh help build'.
+
+###############################################################################
+# Common
+###############################################################################
+
+# CMAKE
+define_path CMAKE       linux   /usr/bin
+define_exe  CMAKE   cmake
+
+# NINJA
+define_path NINJA       linux   /usr/bin
+define_exe  NINJA       linux   ninja
+
+# LCOV
+define_path LCOV        linux   /usr/bin
+define_exe  LCOV    lcov
+define_exe  GENHTML genhtml
+
+# DOXYGEN
+define_path DOXYGEN     linux   /usr/bin
+
+###############################################################################
+# Compiler dependent
+###############################################################################
+
+# GTEST
+define_path GTEST   gcc4.8.5    x64 /usr/local
+define_path GTEST   gcc4.8.5    x86 /usr/local
+
+# LIBXML2
+define_path LIBXML2 gcc4.8.5    x64 /usr/local 
+define_path LIBXML2 gcc4.8.5    x86 /usr/local
+define_exe  XMLLINT linux   xmllint
